@@ -1,0 +1,35 @@
+body {
+    background-color: #FFFAEC;
+    padding: 0;
+    margin: 0;
+    font-size: 2rem;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+thead {
+    background-color: #578E7E;
+    height: 3rem;
+}
+
+tr {
+    background-color: #F5ECD5;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: 2px solid black;
+}
+
+.character {
+    background-color: #FFFAEC;
+    height: 200px;
+    /* dinamikusan adjuk hozzá a dom-hoz */
+}
+
+img {
+    border-radius: 15%;
+}
