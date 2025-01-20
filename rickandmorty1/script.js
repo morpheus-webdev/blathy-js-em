@@ -58,6 +58,7 @@ function printShownCharacters(){
     targetTable.innerHTML = `
     <thead>
         <th>Name</th>
+        row.classList.add('character')
         <th>Species</th>
         <th>Image</th>
     </thead>`;
