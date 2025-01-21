@@ -1,0 +1,55 @@
+:root {
+    --bg: #FFFDEC;
+    --loc-bg: #FFE2E2;
+    --loc-bg-hovered: #FFCFCF;
+    --small-text: 2rem;
+    --medium-text: 3rem;
+    --large-text: 4rem;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg);
+    font-family: 'Open Sans';
+}
+
+#target-div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: var(--small-text);
+    justify-content: space-around;
+    align-items: center;
+    gap: var(--small-text);
+}
+
+nav {
+    text-align: center;
+}
+
+#inputField {
+    margin: var(--small-text);
+    width: 30vw;
+    height: var(--large-text);
+    font-size: var(--medium-text);
+    
+}
+
+#search-button {
+    margin: var(--small-text);
+    height: var(--medium-text);
+    font-size: var(--small-text);
+}
+
+.location {
+    padding: calc(var(--small-text/2));
+    text-align: center;
+    width: 25vw;
+    background-color: var(--loc-bg);
+    border-radius: 10%;
+}
+
+.location:hover {
+    background-color: var(--loc-bg-hovered);
+}

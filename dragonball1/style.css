@@ -1,0 +1,48 @@
+:root {
+    --bg: #cbf078;
+    --char-bg: #f8f398;
+    --char-bg-hovered: #f1b963;
+    --small-text: 2rem;
+    --medium-text: 3rem;
+    --large-text: 4rem;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#inputField {
+    margin-top: var(--small-text);
+    margin-bottom: var(--small-text);
+    width: 35vw;
+    height: var(--large-text);
+    font-size: var(--medium-text);
+}
+#target-div {
+    padding: var(--small-text);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: var(--small-text);
+}
+
+.character {
+    border-radius: 5%;
+    text-align: center;
+    height: 60vh;
+    background-color: var(--char-bg);
+}
+
+.character:hover {
+    background-color: var(--char-bg-hovered);
+}
+
+img {
+    width: 75%;
+    height: 75%;
+}
