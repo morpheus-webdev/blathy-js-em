@@ -3,16 +3,18 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Rick and Morty pagination feladat</title>
 		<link rel="stylesheet" href="style.css" />
 		<script src="script.js" defer></script>
+		<title>Blackjack game</title>
 	</head>
 	<body>
-		<div id="target-div"></div>
-		<nav id="easy">
-			<button onclick="prev(1)">&lt;</button>
-			<button onclick="next(1)">&gt;</button>
-		</nav>
-		<!-- <nav id="pro"></nav> -->
+		<div id="game-table">
+			<div id="enemy-row"></div>
+			<div id="player-row"></div>
+		</div>
+		<div id="player-ui">
+			<button onclick="stand()">Stand</button>
+			<button onclick="hit()">Hit</button>
+		</div>
 	</body>
 </html>

@@ -27,7 +27,7 @@ async function loadPage(num) {
         maxPage = res.info.pages
     }
     printChars();
-    setDynamicPagination();
+    //setDynamicPagination();
 }
 
 function prev(num){
