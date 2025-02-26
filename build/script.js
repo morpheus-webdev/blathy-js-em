@@ -153,10 +153,16 @@ class Merchant {
         this.inventory.push(item);
     }
     sellItem(itemId) {
+        /* [10,20,30].forEach((kiskutya, kiscica) => {//az első a value, a második az index
+            console.log(`Az ${kiscica}. eleme: ${kiskutya}`)
+        }) */
         let copy = this.inventory.filter((it) => {
+            if (it.id === itemId) {
+                this.balance += it.price; //hozzáadom, mielőtt "törlöm"
+            }
             return it.id !== itemId;
         });
-        console.log(copy);
+        this.inventory = copy;
         //törlés
         //balance +$$$
     }
@@ -166,3 +172,4 @@ merchant1.addToInventory(sword1);
 merchant1.addToInventory(sword2);
 merchant1.addToInventory(sword3);
 merchant1.sellItem(2);
+console.log(merchant1);

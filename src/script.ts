@@ -112,11 +112,14 @@ animal2.setSound(animal1.getSound())
 animal1.makeSound();
 animal2.makeSound(); */
 
-interface ISword {
-    id: number;     //unique id for all items in the game
+interface IShopItem {
+    id: number; //unique id for all items in the game
     name: string;
-    dmg: number;
     price: number;
+}
+
+interface ISword extends IShopItem {  //ISword = IShopItem + dmg
+    dmg: number;
 }
 const sword1: ISword = {
     id: 1,
@@ -136,11 +139,8 @@ const sword3: ISword = {
     dmg: 40,
     price: 1500
 }
-interface IArmor {
-    id: number;
-    name: string;
+interface IArmor extends IShopItem { //IArmor = IShopItem + def
     def: number;
-    price: number;
 }
 const armor1: IArmor = {
     id: 4,
@@ -155,7 +155,7 @@ const armor2: IArmor = {
     price: 3500
 }
 
-class Merchant<T extends {id: number}> {
+class Merchant<T extends IShopItem> {
     private health: number;
     private mana: number;
     private name: string;
@@ -177,7 +177,13 @@ class Merchant<T extends {id: number}> {
         this.inventory.push(item)
     }
     sellItem(itemId: number){
-        let copy = this.inventory.filter((it) => {
+        /* [10,20,30].forEach((kiskutya, kiscica) => {//az első a value, a második az index
+            console.log(`Az ${kiscica}. eleme: ${kiskutya}`)
+        }) */
+        let copy = this.inventory.filter((it) => {//megtartom azt amit meg kell
+            if(it.id === itemId){
+                this.balance += it.price;//hozzáadom, mielőtt "törlöm"
+            }
             return it.id !== itemId
         })
         this.inventory = copy;
@@ -190,3 +196,4 @@ merchant1.addToInventory(sword1)
 merchant1.addToInventory(sword2)
 merchant1.addToInventory(sword3)
 merchant1.sellItem(2);
+console.log(merchant1)
