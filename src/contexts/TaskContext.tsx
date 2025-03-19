@@ -5,12 +5,14 @@ import { ITask } from '../util/util';
 interface ITaskContext {
 	tasks: ITask[];
 	addTask: (task: ITask) => void;
+	deleteTask: (id: string) => void;
 }
 
 //defaultObj
 const defaultTaskContext: ITaskContext = {
 	tasks: [],
 	addTask: (task) => {},
+	deleteTask: (id) => {},
 };
 
 //context
@@ -27,8 +29,14 @@ export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
 	function addTask(task: ITask) {
 		setTasks([...tasks, task]);
 	}
+	function deleteTask(id: string) {
+		let copy = tasks.filter((t) => {
+			return t.id !== id;
+		});
+		setTasks(copy);
+	}
 	return (
-		<TaskContext.Provider value={{ tasks, addTask }}>
+		<TaskContext.Provider value={{ tasks, addTask, deleteTask }}>
 			{children}
 		</TaskContext.Provider>
 	);

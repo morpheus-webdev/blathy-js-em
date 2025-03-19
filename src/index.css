@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+body {
+    overflow: scroll;
+    background-color: aqua;
+}
+
+.task-class {
+    @apply w-1/4 h-1/2 m-12 flex flex-col flex-nowrap items-center p-6 gap-4 bg-amber-200 rounded-2xl;
+}

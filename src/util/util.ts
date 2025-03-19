@@ -12,11 +12,13 @@ export const defaultUser: IUser = {
 }
 
 export interface ITask {
+    id: string;
     name: string;
     duration: number;
 }
 
 export const defaultTask: ITask = {
+    id: '',
     name: '',
     duration: 0
 }

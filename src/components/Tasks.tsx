@@ -1,16 +1,13 @@
 import { useContext } from 'react';
 import { TaskContext } from '../contexts/TaskContext';
+import TaskComp from './TaskComp';
 
 const Tasks = () => {
 	const { tasks } = useContext(TaskContext);
 	return (
-		<div>
+		<div className='flex flex-row flex-wrap'>
 			{tasks.map((t, i) => {
-				return (
-					<div key={`task-${i}`}>
-						{t.name} - {t.duration} mins
-					</div>
-				);
+				return <TaskComp key={`task-${i}`} task={t} />;
 			})}
 		</div>
 	);

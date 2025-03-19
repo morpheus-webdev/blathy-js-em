@@ -8,14 +8,14 @@ import Navbar from './components/Navbar';
 
 function App() {
 	return (
-		<>
+		<div>
 			{/* <Login /> */}
 			<Navbar />
 			<Routes>
 				<Route path='/tasks' element={<Tasks />} />
 				<Route path='/new-task' element={<NewTask />} />
 			</Routes>
-		</>
+		</div>
 	);
 }
 
