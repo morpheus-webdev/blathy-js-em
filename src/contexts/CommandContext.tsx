@@ -32,14 +32,30 @@ export const CommandContextProvider = ({
 }) => {
 	const [commands, setCommands] = useState<ICommand[]>(defaultCommands);
 	function likeCommand(name: string) {
-		//TODO
+		/* let myArr = commands.map((c, i) => {
+			return { name: c.name, index: i * 100, kiskutya: 'VOOF' };
+		});
+		console.log(myArr); */
+		let newCommandArr = commands.map((c, i) => {
+			return c.name === name ? { ...c, like: c.like + 1 } : c;
+		});
+		setCommands(newCommandArr);
 	}
 	function addCommand(newCommand: ICommand) {
-		//TODO
+		let newCommandArr = [...commands, newCommand];
+		setCommands(newCommandArr);
 	}
 	function getTopCommand() {
-		//TODO
-		return [];
+		let maxLike = 0;
+		commands.forEach((c, i) => {
+			if (c.like > maxLike) {
+				maxLike = c.like;
+			}
+		});
+		let topCommandArr = commands.filter((c, i) => {
+			return c.like === maxLike;
+		});
+		return topCommandArr;
 	}
 	return (
 		<CommandContext.Provider
