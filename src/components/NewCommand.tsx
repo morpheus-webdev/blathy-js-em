@@ -7,7 +7,7 @@ export const NewCommand = () => {
 	const { addCommand } = useContext(CommandContext);
 	const [newCommand, setNewCommand] = useState<ICommand>(defaultCommand);
 	function handleAdd() {
-		if (newCommand.name && newCommand.description && newCommand.url) {
+		if (newCommand.commandName && newCommand.description && newCommand.url) {
 			addCommand(newCommand);
 		}
 	}
@@ -17,7 +17,7 @@ export const NewCommand = () => {
 				<TextField
 					placeholder='Name...'
 					onChange={(e) =>
-						setNewCommand({ ...newCommand, name: e.target.value })
+						setNewCommand({ ...newCommand, commandName: e.target.value })
 					}
 				/>
 				<TextField

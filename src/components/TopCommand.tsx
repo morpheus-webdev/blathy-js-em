@@ -13,7 +13,7 @@ export const TopCommand = () => {
 			{topCommands.map((c, i) => {
 				return (
 					<div key={`top-comment-${i}`}>
-						<h1>{c.name}</h1>
+						<h1>{c.commandName}</h1>
 						<p>Like: {c.like}</p>
 					</div>
 				);

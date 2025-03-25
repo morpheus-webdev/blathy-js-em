@@ -1,10 +1,10 @@
-import { createContext, ReactNode, useState } from 'react';
-import { defaultCommands, ICommand } from '../util/util';
+import { createContext, ReactNode, useEffect, useState } from 'react';
+import { ICommand } from '../util/util';
 
 //interface
 interface ICommandContext {
 	commands: ICommand[];
-	likeCommand: (name: string) => void;
+	likeCommand: (commandName: string) => void;
 	addCommand: (newCommand: ICommand) => void;
 	getTopCommand: () => ICommand[];
 }
@@ -12,7 +12,7 @@ interface ICommandContext {
 //defObj
 const defaultCommandContext: ICommandContext = {
 	commands: [],
-	likeCommand: (name) => {},
+	likeCommand: (commandName) => {},
 	addCommand: (newCommand) => {},
 	getTopCommand: () => {
 		return [];
@@ -30,20 +30,35 @@ export const CommandContextProvider = ({
 }: {
 	children: ReactNode;
 }) => {
-	const [commands, setCommands] = useState<ICommand[]>(defaultCommands);
-	function likeCommand(name: string) {
-		/* let myArr = commands.map((c, i) => {
-			return { name: c.name, index: i * 100, kiskutya: 'VOOF' };
-		});
-		console.log(myArr); */
-		let newCommandArr = commands.map((c, i) => {
-			return c.name === name ? { ...c, like: c.like + 1 } : c;
+	const [commands, setCommands] = useState<ICommand[]>([]);
+	let updateCommands = async () => {
+		let res = await fetch('/api/commands').then((data) => data.json());
+		setCommands(res);
+	};
+	useEffect(() => {
+		updateCommands();
+	}, []);
+	function likeCommand(commandName: string) {
+		console.log(commandName);
+
+		let newCommandArr = [...commands].map((c, i) => {
+			return c.commandName === commandName ? { ...c, like: c.like + 1 } : c;
 		});
 		setCommands(newCommandArr);
 	}
-	function addCommand(newCommand: ICommand) {
-		let newCommandArr = [...commands, newCommand];
-		setCommands(newCommandArr);
+	async function addCommand(newCommand: ICommand) {
+		//let newCommandArr = [...commands, newCommand];
+		let res = await fetch('/api/new-command', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(newCommand),
+		}).then((data) => data.json());
+		console.log(res);
+
+		updateCommands(); //TODO await response
+		//setCommands(newCommandArr);
 	}
 	function getTopCommand() {
 		let maxLike = 0;
